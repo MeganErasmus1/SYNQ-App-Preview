@@ -7,6 +7,7 @@ import { Avatar } from "../ui";
 import { cn } from "../../lib/utils";
 import { QMark } from "../brand/QMark";
 import { Highlight } from "../brand/Slogan";
+import { NovaAvatar } from "./NovaAvatar";
 
 const initialMessages = [
   {
@@ -29,7 +30,7 @@ export function NovaLauncher() {
       animate={{ opacity: 1, y: 0 }}
     >
       <div className="absolute inset-0 rounded-full bg-synq-gradient opacity-20 blur-xl group-hover:opacity-40 transition-opacity" />
-      <QMark size={26} />
+      <NovaAvatar size={32} />
     </motion.button>
   );
 }
@@ -81,7 +82,7 @@ export function NovaWidget() {
         >
           <div className="flex items-center justify-between px-5 py-4 border-b border-line bg-gradient-to-r from-white/[0.03] to-transparent">
             <div className="flex items-center gap-3">
-              <QMark size={28} />
+              <NovaAvatar size={36} />
               <div>
                 <div className="text-sm font-semibold text-ink">Nova</div>
                 <div className="text-[11px] text-accent-cyan flex items-center gap-1">
@@ -138,7 +139,7 @@ export function NovaWidget() {
             {thinking && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-2.5">
                 <div className="shrink-0 mt-0.5">
-                  <QMark size={22} spinning />
+                  <NovaAvatar size={26} thinking />
                 </div>
                 <div className="glass rounded-2xl px-4 py-2.5 text-sm text-ink-muted italic">
                   {loadingPhrase}
