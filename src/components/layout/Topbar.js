@@ -48,7 +48,7 @@ export function Topbar() {
         <div className="relative">
           <IconButton icon={Bell} active={notifOpen} onClick={() => setNotifOpen(!notifOpen)} />
           {unreadCount > 0 && (
-            <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-accent-cyan ring-2 ring-bg" />
+            <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-accent-pink ring-2 ring-bg shadow-glow-pink" />
           )}
         </div>
         <Avatar name="Johan van der Merwe" size="sm" className="ml-1" />

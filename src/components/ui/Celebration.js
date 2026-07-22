@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 
-const COLORS = ["#19E6D1", "#1EA7FF", "#7B5CFF", "#FF6FD1", "#F5F5F7"];
+const COLORS = ["#19E6D1", "#1EA7FF", "#7B5CFF", "#FF2E9A", "#F5F5F7"];
 
 function burstParticles(count = 18) {
   return Array.from({ length: count }, (_, i) => {

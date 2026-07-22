@@ -21,6 +21,58 @@ const particleSeeds = Array.from({ length: 26 }, (_, i) => ({
   size: 2 + (i % 3),
 }));
 
+// Electric blue / purple / pink — the ring's own burst, not the ambient cyan
+// particles drifting in the background.
+const EXPLOSION_COLORS = ["#1EA7FF", "#7B5CFF", "#FF2E9A", "#19E6D1"];
+
+// Molecules fly out along the ring's own circumference, each carrying a
+// randomized "depth" (near = bigger, sharper, faster / far = smaller,
+// blurrier, slower) so the burst reads as 3D rather than a flat radial fan.
+const explosionSeeds = Array.from({ length: 84 }, (_, i) => {
+  const angle = (i / 84) * Math.PI * 2 + Math.sin(i * 3.7) * 0.12;
+  const depth = (i % 7) / 6;
+  const startR = 90 + Math.sin(i * 5.1) * 8;
+  const endR = 130 + depth * 190 + Math.cos(i * 2.3) * 26;
+  return {
+    id: i,
+    startX: Math.cos(angle) * startR,
+    startY: Math.sin(angle) * startR,
+    endX: Math.cos(angle) * endR,
+    endY: Math.sin(angle) * endR,
+    size: 8 - depth * 5,
+    blur: depth * 4.5,
+    color: EXPLOSION_COLORS[i % EXPLOSION_COLORS.length],
+    duration: 0.85 + depth * 0.55,
+    delay: (i % 9) * 0.012,
+    spin: (i % 2 === 0 ? 1 : -1) * (90 + depth * 180),
+  };
+});
+
+function QExplosion() {
+  return (
+    <div className="absolute inset-0 pointer-events-none" style={{ perspective: 700 }}>
+      {explosionSeeds.map((p) => (
+        <motion.span
+          key={p.id}
+          className="absolute rounded-full top-1/2 left-1/2"
+          style={{
+            width: p.size,
+            height: p.size,
+            marginLeft: -p.size / 2,
+            marginTop: -p.size / 2,
+            background: p.color,
+            filter: p.blur ? `blur(${p.blur}px)` : undefined,
+            boxShadow: `0 0 ${6 + (8 - p.size)}px ${p.color}`,
+          }}
+          initial={{ x: p.startX, y: p.startY, opacity: 0, scale: 0.4, rotate: 0 }}
+          animate={{ x: p.endX, y: p.endY, opacity: [0, 1, 0], scale: [0.4, 1, 0.7], rotate: p.spin }}
+          transition={{ duration: p.duration, delay: p.delay, ease: [0.16, 1, 0.3, 1] }}
+        />
+      ))}
+    </div>
+  );
+}
+
 function RingOnly() {
   return (
     <svg viewBox="0 0 100 100" width={260} height={260}>
@@ -57,14 +109,24 @@ function RingOnly() {
 // Framer Motion version — mounting the element late sidesteps that entirely.
 function IntroMark() {
   const [showBloom, setShowBloom] = useState(false);
+  const [showExplosion, setShowExplosion] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowBloom(true), 2150);
-    return () => clearTimeout(timer);
+    const bloomTimer = setTimeout(() => setShowBloom(true), 2150);
+    const explodeTimer = setTimeout(() => setShowExplosion(true), 5300);
+    return () => {
+      clearTimeout(bloomTimer);
+      clearTimeout(explodeTimer);
+    };
   }, []);
 
   return (
     <div className="relative" style={{ width: 260, height: 260 }}>
+      <motion.div
+        className="absolute inset-0"
+        animate={{ opacity: showExplosion ? 0 : 1 }}
+        transition={{ duration: 0.35, ease: "easeOut" }}
+      >
       <motion.div
         className="absolute inset-0 opacity-0"
         animate={{ opacity: [0, 0.18, 0.16], scale: [1.5, 1.7, 1.6] }}
@@ -125,6 +187,11 @@ function IntroMark() {
 
       <motion.div
         className="absolute inset-0"
+        animate={{ opacity: showExplosion ? 0 : 1, scale: showExplosion ? 1.5 : 1 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+      >
+      <motion.div
+        className="absolute inset-0"
         animate={{ rotateY: [0, 10, -10, 0], rotateX: [0, -3, 3, 0] }}
         transition={{
           rotateY: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2.6 },
@@ -183,6 +250,8 @@ function IntroMark() {
           />
         </svg>
       </motion.div>
+      </motion.div>
+      </motion.div>
 
       {showBloom && (
         <motion.div
@@ -197,6 +266,8 @@ function IntroMark() {
           transition={{ duration: 0.9, ease: "easeOut" }}
         />
       )}
+
+      {showExplosion && <QExplosion />}
     </div>
   );
 }
@@ -205,7 +276,7 @@ export function LogoIntro({ onDone }) {
   const particles = useMemo(() => particleSeeds, []);
 
   useEffect(() => {
-    const timer = setTimeout(onDone, 7200);
+    const timer = setTimeout(onDone, 7500);
     return () => clearTimeout(timer);
   }, [onDone]);
 

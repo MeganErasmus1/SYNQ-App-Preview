@@ -14,6 +14,7 @@ import {
   FolderKanban,
 } from "lucide-react";
 import { Button, GlassCard, Badge } from "../../components/ui";
+import { Reveal } from "../../components/ui/Reveal";
 import { QMark } from "../../components/nova/NovaWidget";
 import { Logo } from "../../components/brand/Logo";
 import { LogoIntro } from "../../components/brand/LogoIntro";
@@ -69,6 +70,10 @@ function FloatingOrbs() {
       <div
         className="absolute bottom-0 right-1/4 w-[24rem] h-[24rem] rounded-full bg-accent-blue/15 blur-[120px] animate-float"
         style={{ animationDelay: "3s" }}
+      />
+      <div
+        className="absolute top-1/2 left-1/3 w-[18rem] h-[18rem] rounded-full bg-accent-pink/10 blur-[120px] animate-float"
+        style={{ animationDelay: "2s" }}
       />
     </div>
   );
@@ -217,16 +222,18 @@ export default function Landing() {
       </section>
 
       <section className="px-6 py-16 max-w-7xl mx-auto">
-        <div className="text-center mb-8">
-          <h3 className="text-sm font-semibold text-ink-muted uppercase tracking-wider">
-            Built for every seat at the table
-          </h3>
-        </div>
-        <div className="flex flex-wrap gap-2.5 justify-center max-w-4xl mx-auto">
-          {personas.map((p) => (
-            <Badge key={p}>{p}</Badge>
-          ))}
-        </div>
+        <Reveal y={20}>
+          <div className="text-center mb-8">
+            <h3 className="text-sm font-semibold text-ink-muted uppercase tracking-wider">
+              Built for every seat at the table
+            </h3>
+          </div>
+          <div className="flex flex-wrap gap-2.5 justify-center max-w-4xl mx-auto">
+            {personas.map((p) => (
+              <Badge key={p}>{p}</Badge>
+            ))}
+          </div>
+        </Reveal>
       </section>
 
       <section id="nova" className="px-6 py-24 max-w-7xl mx-auto">
@@ -274,48 +281,56 @@ export default function Landing() {
 
       <section className="px-6 py-24 max-w-7xl mx-auto">
         <div className="grid md:grid-cols-3 gap-6">
-          {testimonials.map((t) => (
-            <GlassCard key={t.name} className="p-7">
-              <p className="text-sm text-ink leading-relaxed mb-5">"<Highlight text={t.quote} />"</p>
-              <div className="text-sm font-medium text-ink">{t.name}</div>
-              <div className="text-xs text-ink-muted">{t.role}</div>
-            </GlassCard>
+          {testimonials.map((t, i) => (
+            <Reveal key={t.name} delay={i * 0.1}>
+              <GlassCard className="p-7 h-full">
+                <p className="text-sm text-ink leading-relaxed mb-5">"<Highlight text={t.quote} />"</p>
+                <div className="text-sm font-medium text-ink">{t.name}</div>
+                <div className="text-xs text-ink-muted">{t.role}</div>
+              </GlassCard>
+            </Reveal>
           ))}
         </div>
       </section>
 
       <section id="roadmap" className="px-6 py-24 max-w-7xl mx-auto">
-        <div className="text-center mb-14">
-          <div className="text-xs font-semibold tracking-wider uppercase text-accent-blue mb-3">
-            The road ahead
+        <Reveal>
+          <div className="text-center mb-14">
+            <div className="text-xs font-semibold tracking-wider uppercase text-accent-blue mb-3">
+              The road ahead
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-semibold">This is only the beginning.</h2>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-semibold">This is only the beginning.</h2>
-        </div>
+        </Reveal>
         <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
-          {roadmap.slice(0, 8).map((r) => (
-            <GlassCard key={r.id} className="p-5">
-              <Badge tone="blue" className="mb-3">
-                {r.category}
-              </Badge>
-              <div className="text-sm font-medium text-ink mb-1.5">{r.title}</div>
-              <div className="text-xs text-ink-muted leading-relaxed">{r.desc}</div>
-            </GlassCard>
+          {roadmap.slice(0, 8).map((r, i) => (
+            <Reveal key={r.id} delay={(i % 4) * 0.08}>
+              <GlassCard className="p-5 h-full">
+                <Badge tone="blue" className="mb-3">
+                  {r.category}
+                </Badge>
+                <div className="text-sm font-medium text-ink mb-1.5">{r.title}</div>
+                <div className="text-xs text-ink-muted leading-relaxed">{r.desc}</div>
+              </GlassCard>
+            </Reveal>
           ))}
         </div>
       </section>
 
       <section className="px-6 py-24 max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl sm:text-5xl font-semibold mb-6">
-          How has this <span className="text-gradient">not existed</span> before?
-        </h2>
-        <p className="text-ink-muted mb-10 max-w-xl mx-auto">
-          <Highlight text="Join the organisers, venues and suppliers already bringing their entire events business into SYNQ." />
-        </p>
-        <Link to="/onboarding">
-          <Button size="lg" icon={Sparkles}>
-            Get Started — It's Free
-          </Button>
-        </Link>
+        <Reveal>
+          <h2 className="text-3xl sm:text-5xl font-semibold mb-6">
+            How has this <span className="text-gradient">not existed</span> before?
+          </h2>
+          <p className="text-ink-muted mb-10 max-w-xl mx-auto">
+            <Highlight text="Join the organisers, venues and suppliers already bringing their entire events business into SYNQ." />
+          </p>
+          <Link to="/onboarding">
+            <Button size="lg" icon={Sparkles}>
+              Get Started — It's Free
+            </Button>
+          </Link>
+        </Reveal>
       </section>
 
       <footer className="border-t border-line px-6 py-10">

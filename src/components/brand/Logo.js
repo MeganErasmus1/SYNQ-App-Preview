@@ -20,7 +20,7 @@ export function Logo({ size = "md", className, spinning = false }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center font-bold text-ink font-display",
+        "inline-flex items-center font-bold text-ink font-brand",
         s.text,
         s.tracking,
         s.gap,

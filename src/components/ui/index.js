@@ -106,6 +106,7 @@ export function Badge({ children, tone = "default", className, dot = false }) {
     blue: "bg-accent-blue/10 text-accent-blue border border-accent-blue/20",
     cyan: "bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20",
     purple: "bg-accent-purple/10 text-accent-purple border border-accent-purple/20",
+    pink: "bg-accent-pink/10 text-accent-pink border border-accent-pink/20",
     green: "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20",
     amber: "bg-amber-500/10 text-amber-400 border border-amber-500/20",
     red: "bg-red-500/10 text-red-400 border border-red-500/20",

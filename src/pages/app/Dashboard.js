@@ -7,6 +7,7 @@ import {
   Sparkles, Cloud, Truck, MessageSquare, Plus, FileText, Users, CalendarPlus, ArrowUpRight, Clock, FolderKanban,
 } from "lucide-react";
 import { GlassCard, Badge, Avatar, ProgressBar, Button, SectionHeader, AnimatedValue } from "../../components/ui";
+import { Reveal } from "../../components/ui/Reveal";
 import { CoverArt } from "../../components/ui/CoverArt";
 import { QMark } from "../../components/nova/NovaWidget";
 import { useApp } from "../../context/AppContext";
@@ -121,7 +122,7 @@ export default function Dashboard() {
         </GlassCard>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <Reveal className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <GlassCard className="p-6 lg:col-span-2">
           <SectionHeader
             title="Upcoming Events"
@@ -203,9 +204,9 @@ export default function Dashboard() {
             </div>
           </GlassCard>
         </div>
-      </div>
+      </Reveal>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <Reveal className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <GlassCard className="p-5 flex items-center gap-4">
           <div className="w-11 h-11 rounded-xl bg-accent-blue/10 flex items-center justify-center">
             <Cloud className="w-5 h-5 text-accent-blue" />
@@ -242,7 +243,7 @@ export default function Dashboard() {
             <Sparkles className="w-3.5 h-3.5" />
           </Button>
         </GlassCard>
-      </div>
+      </Reveal>
     </div>
   );
 }

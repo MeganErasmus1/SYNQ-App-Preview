@@ -14,6 +14,7 @@ module.exports = {
           blue: "#1EA7FF",
           cyan: "#19E6D1",
           purple: "#7B5CFF",
+          pink: "#FF2E9A",
         },
         ink: {
           DEFAULT: "#F5F5F7",
@@ -24,7 +25,7 @@ module.exports = {
       },
       fontFamily: {
         sans: [
-          "Satoshi",
+          "General Sans",
           "-apple-system",
           "BlinkMacSystemFont",
           "Segoe UI",
@@ -33,6 +34,14 @@ module.exports = {
           "sans-serif",
         ],
         display: [
+          "Clash Display",
+          "General Sans",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "sans-serif",
+        ],
+        brand: [
           "Satoshi",
           "-apple-system",
           "BlinkMacSystemFont",
@@ -51,6 +60,7 @@ module.exports = {
         glow: "0 0 40px rgba(30,167,255,0.25)",
         "glow-cyan": "0 0 40px rgba(25,230,209,0.25)",
         "glow-purple": "0 0 40px rgba(123,92,255,0.25)",
+        "glow-pink": "0 0 40px rgba(255,46,154,0.3)",
         glass: "0 8px 32px rgba(0,0,0,0.35)",
       },
       borderRadius: {

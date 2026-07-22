@@ -6,7 +6,10 @@ const sizes = {
   md: { line1: "text-base", line2: "text-lg" },
   lg: { line1: "text-lg", line2: "text-2xl" },
   xl: { line1: "text-2xl", line2: "text-3xl" },
-  hero: { line1: "text-5xl sm:text-7xl", line2: "text-5xl sm:text-7xl" },
+  hero: {
+    line1: "text-[clamp(1.5rem,3.6vw,2.75rem)]",
+    line2: "text-[clamp(1.75rem,4vw,3.25rem)]",
+  },
 };
 
 // The canonical SYNQ tagline lockup, used everywhere the slogan appears:
@@ -22,10 +25,12 @@ export function Slogan({ size = "md", align = "center", weight = "font-semibold"
         className
       )}
     >
-      <span className={cn(s.line1, weight, "text-ink")}>Every Venue. Every Supplier. Every Event.</span>
+      <span className={cn(s.line1, weight, "text-ink font-display")}>
+        Every Venue. Every Supplier. Every Event.
+      </span>
       <span className={cn(s.line2, weight)}>
-        <span className="text-ink-muted font-normal">in </span>
-        <span className="text-gradient">SYNQ</span>
+        <span className="text-ink-muted font-normal font-display">in </span>
+        <span className="text-gradient font-brand tracking-[0.04em]">SYNQ</span>
       </span>
     </div>
   );
@@ -41,7 +46,9 @@ export function Highlight({ text }) {
       {parts.map((part, i) => (
         <React.Fragment key={i}>
           {part}
-          {i < parts.length - 1 && <span className="text-gradient font-semibold">SYNQ</span>}
+          {i < parts.length - 1 && (
+            <span className="text-gradient font-brand font-semibold tracking-[0.04em]">SYNQ</span>
+          )}
         </React.Fragment>
       ))}
     </>

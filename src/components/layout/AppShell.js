@@ -21,6 +21,10 @@ export function AppShell() {
           className="absolute bottom-0 -left-40 w-[28rem] h-[28rem] rounded-full bg-accent-cyan/[0.05] blur-[140px] animate-float"
           style={{ animationDelay: "-3s" }}
         />
+        <div
+          className="absolute top-1/3 right-1/4 w-[20rem] h-[20rem] rounded-full bg-accent-pink/[0.04] blur-[140px] animate-float"
+          style={{ animationDelay: "-1.5s" }}
+        />
       </div>
       <Sidebar />
       <div className="flex-1 min-w-0 flex flex-col relative">
