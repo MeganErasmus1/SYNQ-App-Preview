@@ -16,9 +16,13 @@ import {
 import { Button, GlassCard, Badge } from "../../components/ui";
 import { Reveal } from "../../components/ui/Reveal";
 import { QMark } from "../../components/nova/NovaWidget";
+import { NovaAvatar } from "../../components/nova/NovaAvatar";
 import { Logo } from "../../components/brand/Logo";
 import { LogoIntro } from "../../components/brand/LogoIntro";
 import { Slogan, Highlight } from "../../components/brand/Slogan";
+import { HeroVisual } from "../../components/brand/HeroVisual";
+import { GradientWords } from "../../components/brand/GradientWords";
+import { Constellation } from "../../components/brand/Constellation";
 import { roadmap } from "../../data/mockData";
 
 const INTRO_KEY = "synq_intro_seen";
@@ -117,8 +121,9 @@ export default function Landing() {
         </div>
       </header>
 
-      <section className="relative px-6 pt-20 pb-24 max-w-7xl mx-auto text-center">
+      <section className="relative px-6 pt-20 pb-24 max-w-7xl mx-auto text-center overflow-hidden">
         <FloatingOrbs />
+        <Constellation className="opacity-70" />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -152,42 +157,84 @@ export default function Landing() {
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.3 }}
-          className="relative mt-20"
+          className="relative mt-24 sm:mt-28"
         >
-          <div className="absolute inset-0 bg-synq-gradient blur-[100px] opacity-20 rounded-[3rem]" />
-          <GlassCard className="relative p-3 sm:p-4 max-w-5xl mx-auto" hover={false}>
-            <div className="rounded-xl2 overflow-hidden border border-line bg-bg-secondary">
-              <div className="flex items-center gap-1.5 px-4 py-3 border-b border-line">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-400/60" />
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-400/60" />
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/60" />
-                <span className="ml-3 text-xs text-ink-faint">app.synq.io/mission-control</span>
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <HeroVisual size={620} />
+          </div>
+
+          <div className="relative max-w-5xl mx-auto">
+            <GlassCard
+              className="relative p-3 sm:p-4"
+              hover={false}
+              style={{ transform: "rotate(-1.2deg)" }}
+            >
+              <div className="rounded-xl2 overflow-hidden border border-line bg-bg-secondary">
+                <div className="flex items-center gap-1.5 px-4 py-3 border-b border-line">
+                  <span className="w-2.5 h-2.5 rounded-full bg-red-400/60" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-400/60" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/60" />
+                  <span className="ml-3 text-xs text-ink-faint">app.synq.io/mission-control</span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-6 text-left">
+                  <GlassCard className="p-4 sm:col-span-2">
+                    <div className="text-xs text-ink-muted mb-1">Good morning, Johan 👋</div>
+                    <div className="text-sm text-ink mb-4">Here's what's happening today.</div>
+                    <div className="grid grid-cols-3 gap-3">
+                      {[["4", "Projects"], ["7", "Quotes"], ["3", "Site Visits"]].map(([n, l]) => (
+                        <div key={l} className="glass rounded-xl p-3 text-center">
+                          <div className="text-lg font-semibold">{n}</div>
+                          <div className="text-[11px] text-ink-faint">{l}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </GlassCard>
+                  <GlassCard className="p-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <QMark size={18} />
+                      <span className="text-xs font-semibold">Nova</span>
+                    </div>
+                    <p className="text-xs text-ink-muted leading-relaxed">
+                      I found 3 venues under budget for Aria Motors. Want me to prepare the proposal?
+                    </p>
+                  </GlassCard>
+                </div>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-6 text-left">
-                <GlassCard className="p-4 sm:col-span-2">
-                  <div className="text-xs text-ink-muted mb-1">Good morning, Johan 👋</div>
-                  <div className="text-sm text-ink mb-4">Here's what's happening today.</div>
-                  <div className="grid grid-cols-3 gap-3">
-                    {[["4", "Projects"], ["7", "Quotes"], ["3", "Site Visits"]].map(([n, l]) => (
-                      <div key={l} className="glass rounded-xl p-3 text-center">
-                        <div className="text-lg font-semibold">{n}</div>
-                        <div className="text-[11px] text-ink-faint">{l}</div>
-                      </div>
-                    ))}
-                  </div>
-                </GlassCard>
-                <GlassCard className="p-4">
-                  <div className="flex items-center gap-2 mb-2">
-                    <QMark size={18} />
-                    <span className="text-xs font-semibold">Nova</span>
-                  </div>
-                  <p className="text-xs text-ink-muted leading-relaxed">
-                    I found 3 venues under budget for Aria Motors. Want me to prepare the proposal?
-                  </p>
-                </GlassCard>
-              </div>
-            </div>
-          </GlassCard>
+            </GlassCard>
+
+            <motion.div
+              className="hidden md:block absolute -top-10 -right-8 w-60 z-20"
+              style={{ transform: "rotate(5deg)" }}
+              initial={{ opacity: 0, y: -20, rotate: 5 }}
+              animate={{ opacity: 1, y: 0, rotate: 5 }}
+              transition={{ duration: 0.7, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ rotate: 0, scale: 1.03 }}
+            >
+              <GlassCard className="p-4 shadow-glow-purple">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <NovaAvatar size={22} />
+                  <span className="text-xs font-semibold text-ink">Nova</span>
+                </div>
+                <p className="text-[11px] text-ink-muted leading-relaxed">
+                  Found 2 suppliers under budget — want me to draft the proposal?
+                </p>
+              </GlassCard>
+            </motion.div>
+
+            <motion.div
+              className="hidden md:block absolute -bottom-10 -left-8 w-40 z-20"
+              style={{ transform: "rotate(-7deg)" }}
+              initial={{ opacity: 0, y: 20, rotate: -7 }}
+              animate={{ opacity: 1, y: 0, rotate: -7 }}
+              transition={{ duration: 0.7, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ rotate: 0, scale: 1.05 }}
+            >
+              <GlassCard className="p-4 text-center shadow-glow-pink">
+                <div className="text-xl font-semibold text-gradient">92%</div>
+                <div className="text-[10px] text-ink-faint">Client Retention</div>
+              </GlassCard>
+            </motion.div>
+          </div>
         </motion.div>
       </section>
 
@@ -196,7 +243,9 @@ export default function Landing() {
           <div className="text-xs font-semibold tracking-wider uppercase text-accent-blue mb-3">
             One ecosystem
           </div>
-          <h2 className="text-3xl sm:text-4xl font-semibold mb-4">Everything the industry needs, connected.</h2>
+          <h2 className="text-3xl sm:text-4xl font-black mb-4">
+            <GradientWords text="Everything the industry needs, connected." highlight={["industry", "connected"]} />
+          </h2>
           <p className="text-ink-muted max-w-xl mx-auto">
             Think Monday.com, Slack, HubSpot, Dropbox, ChatGPT and Airbnb — rebuilt from the ground up for events.
           </p>
@@ -255,7 +304,13 @@ export default function Landing() {
                 <Button icon={Sparkles}>Ask Nova something</Button>
               </Link>
             </div>
-            <div className="space-y-3">
+            <div className="relative space-y-3">
+              <motion.div
+                className="hidden md:block absolute -inset-y-6 -inset-x-4 rounded-[3rem] border border-accent-pink/25 pointer-events-none"
+                animate={{ rotate: [0, 2, 0], opacity: [0.5, 0.9, 0.5] }}
+                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                style={{ boxShadow: "0 0 60px rgba(255,46,154,0.15)" }}
+              />
               {[
                 "I found two suppliers available under budget.",
                 "Want me to prepare the proposal?",
@@ -299,7 +354,9 @@ export default function Landing() {
             <div className="text-xs font-semibold tracking-wider uppercase text-accent-blue mb-3">
               The road ahead
             </div>
-            <h2 className="text-3xl sm:text-4xl font-semibold">This is only the beginning.</h2>
+            <h2 className="text-3xl sm:text-4xl font-black">
+              <GradientWords text="This is only the beginning." highlight={["only", "beginning"]} />
+            </h2>
           </div>
         </Reveal>
         <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
