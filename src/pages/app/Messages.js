@@ -47,7 +47,7 @@ export default function Messages() {
                   <div className="text-xs text-ink-faint truncate">{c.messages[c.messages.length - 1]?.text}</div>
                 </div>
                 {c.unread > 0 && (
-                  <span className="text-[10px] bg-accent-blue text-white rounded-full w-4.5 h-4.5 flex items-center justify-center shrink-0">
+                  <span className="text-[10px] bg-accent-pink text-white rounded-full w-4.5 h-4.5 flex items-center justify-center shrink-0">
                     {c.unread}
                   </span>
                 )}

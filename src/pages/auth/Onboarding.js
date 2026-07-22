@@ -11,14 +11,14 @@ import { Button, Input, GlassCard } from "../../components/ui";
 import { cn } from "../../lib/utils";
 
 const roleOptions = [
-  { id: "organiser", label: "Event Organiser", icon: Briefcase },
-  { id: "venue", label: "Venue", icon: Building2 },
-  { id: "supplier", label: "Supplier / AV / Production", icon: Truck },
-  { id: "client", label: "Corporate or Wedding Client", icon: Users2 },
-  { id: "photographer", label: "Photographer", icon: Camera },
-  { id: "security", label: "Security Company", icon: ShieldCheck },
-  { id: "marketplace", label: "Equipment Rental", icon: Store },
-  { id: "freelancer", label: "Freelancer", icon: Sparkles },
+  { id: "organiser", label: "Event Organiser", icon: Briefcase, color: "text-accent-blue" },
+  { id: "venue", label: "Venue", icon: Building2, color: "text-accent-cyan" },
+  { id: "supplier", label: "Supplier / AV / Production", icon: Truck, color: "text-accent-purple" },
+  { id: "client", label: "Corporate or Wedding Client", icon: Users2, color: "text-accent-pink" },
+  { id: "photographer", label: "Photographer", icon: Camera, color: "text-accent-blue" },
+  { id: "security", label: "Security Company", icon: ShieldCheck, color: "text-accent-cyan" },
+  { id: "marketplace", label: "Equipment Rental", icon: Store, color: "text-accent-purple" },
+  { id: "freelancer", label: "Freelancer", icon: Sparkles, color: "text-accent-pink" },
 ];
 
 export default function Onboarding() {
@@ -41,6 +41,7 @@ export default function Onboarding() {
     <div className="min-h-screen bg-bg text-ink bg-noise flex items-center justify-center px-6 py-16 relative overflow-hidden">
       <div className="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-accent-purple/20 blur-[120px] animate-float" />
       <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-accent-cyan/15 blur-[120px] animate-float" />
+      <div className="absolute top-1/3 right-1/4 w-72 h-72 rounded-full bg-accent-pink/10 blur-[120px] animate-float" style={{ animationDelay: "1s" }} />
 
       <div className="relative w-full max-w-2xl">
         <div className="flex items-center justify-center mb-10">
@@ -71,7 +72,7 @@ export default function Onboarding() {
                         role === r.id && "border-accent-blue/60 shadow-glow"
                       )}
                     >
-                      <r.icon className="w-5 h-5 text-accent-blue" />
+                      <r.icon className={cn("w-5 h-5", r.color)} />
                       <span className="text-xs text-ink font-medium leading-tight">{r.label}</span>
                     </GlassCard>
                   </button>

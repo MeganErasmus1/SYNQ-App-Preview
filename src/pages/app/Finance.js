@@ -51,7 +51,7 @@ export default function Finance() {
 
       <GlassCard className="p-6">
         <div className="flex items-start gap-3 mb-6">
-          <Badge tone="purple" dot>Coming Soon</Badge>
+          <Badge tone="pink" dot>Coming Soon</Badge>
         </div>
         <h3 className="text-sm font-semibold text-ink mb-1">
           <Highlight text="SYNQ doesn't replace your accounting software — it connects to it." />

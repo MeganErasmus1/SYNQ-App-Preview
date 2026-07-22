@@ -8,7 +8,7 @@ const typeTone = {
   "site-visit": "blue",
   deadline: "red",
   walkthrough: "purple",
-  meeting: "default",
+  meeting: "pink",
   tasting: "cyan",
   delivery: "amber",
   event: "green",
@@ -22,6 +22,7 @@ const eventPillTone = {
   cyan: "bg-accent-cyan/15 text-accent-cyan",
   amber: "bg-amber-500/15 text-amber-400",
   green: "bg-emerald-500/15 text-emerald-400",
+  pink: "bg-accent-pink/15 text-accent-pink",
 };
 
 export default function CalendarPage() {

@@ -21,6 +21,10 @@ export function AuthLayout({ children, title, subtitle }) {
           className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-accent-cyan/15 blur-[120px] animate-float"
           style={{ animationDelay: "2s" }}
         />
+        <div
+          className="absolute top-1/3 right-1/4 w-72 h-72 rounded-full bg-accent-pink/10 blur-[120px] animate-float"
+          style={{ animationDelay: "1s" }}
+        />
         <Link to="/" className="relative">
           <Logo size="md" />
         </Link>

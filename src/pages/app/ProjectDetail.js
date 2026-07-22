@@ -188,7 +188,7 @@ export default function ProjectDetail() {
               return (
                 <div key={i} className="flex items-center gap-3 py-3.5">
                   <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
-                    <Icon className="w-4 h-4 text-accent-blue" />
+                    <Icon className={`w-4 h-4 ${["text-accent-blue", "text-accent-purple", "text-accent-pink", "text-accent-cyan"][i % 4]}`} />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="text-sm text-ink truncate">{f.name}</div>

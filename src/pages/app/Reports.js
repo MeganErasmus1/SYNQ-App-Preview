@@ -18,15 +18,15 @@ export default function Reports() {
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          ["Total Revenue (YTD)", formatCurrency(4620000), "+18%"],
-          ["Avg Project Margin", "31%", "+3pts"],
-          ["Client Retention", "92%", "+4pts"],
-          ["Avg Time to Quote", "6.2h", "-1.4h"],
-        ].map(([label, value, delta]) => (
+          ["Total Revenue (YTD)", formatCurrency(4620000), "+18%", "text-accent-cyan"],
+          ["Avg Project Margin", "31%", "+3pts", "text-accent-cyan"],
+          ["Client Retention", "92%", "+4pts", "text-accent-pink"],
+          ["Avg Time to Quote", "6.2h", "-1.4h", "text-accent-cyan"],
+        ].map(([label, value, delta, color]) => (
           <GlassCard key={label} className="p-5">
             <div className="text-xs text-ink-muted mb-2">{label}</div>
             <div className="text-xl font-semibold text-ink">{value}</div>
-            <div className="text-xs text-accent-cyan mt-1 font-medium">{delta}</div>
+            <div className={`text-xs mt-1 font-medium ${color}`}>{delta}</div>
           </GlassCard>
         ))}
       </div>

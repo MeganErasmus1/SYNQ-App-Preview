@@ -5,6 +5,8 @@ import { files } from "../../data/mockData";
 import { cn } from "../../lib/utils";
 
 const iconFor = (type) => (type === "folder" ? Folder : type === "slides" ? ImageIcon : FileText);
+const boxBgFor = (type) => (type === "folder" ? "bg-accent-blue/10" : type === "slides" ? "bg-accent-pink/10" : "bg-white/5");
+const iconColorFor = (type) => (type === "folder" ? "text-accent-blue" : type === "slides" ? "text-accent-pink" : "text-accent-cyan");
 
 export default function Files() {
   const [view, setView] = useState("grid");
@@ -36,8 +38,8 @@ export default function Files() {
             const Icon = iconFor(f.type);
             return (
               <GlassCard key={f.id} className="p-5 flex flex-col items-center text-center gap-3">
-                <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center", f.type === "folder" ? "bg-accent-blue/10" : "bg-white/5")}>
-                  <Icon className={cn("w-6 h-6", f.type === "folder" ? "text-accent-blue" : "text-ink-muted")} />
+                <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center", boxBgFor(f.type))}>
+                  <Icon className={cn("w-6 h-6", iconColorFor(f.type))} />
                 </div>
                 <div className="text-xs font-medium text-ink line-clamp-2">{f.name}</div>
                 <div className="text-[10px] text-ink-faint">{f.type === "folder" ? `${f.items} items` : f.size}</div>
@@ -52,7 +54,7 @@ export default function Files() {
             return (
               <div key={f.id} className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/[0.03] transition-colors">
                 <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
-                  <Icon className="w-4 h-4 text-accent-blue" />
+                  <Icon className={cn("w-4 h-4", iconColorFor(f.type))} />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="text-sm text-ink truncate">{f.name}</div>

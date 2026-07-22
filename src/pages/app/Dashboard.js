@@ -133,7 +133,7 @@ export default function Dashboard() {
             }
           />
           <div className="space-y-3">
-            {projects.slice(0, 3).map((p) => (
+            {projects.slice(0, 3).map((p, i) => (
               <Link
                 key={p.id}
                 to={`/app/projects/${p.id}`}
@@ -143,7 +143,7 @@ export default function Dashboard() {
                 <div className="flex-1 min-w-0">
                   <div className="text-sm font-medium text-ink truncate">{p.name}</div>
                   <div className="text-xs text-ink-muted">{p.venue} · {formatDate(p.date)}</div>
-                  <ProgressBar value={p.progress} className="mt-2" height="h-1" />
+                  <ProgressBar value={p.progress} className="mt-2" height="h-1" tone={["blue", "pink", "purple"][i % 3]} />
                 </div>
                 <Badge tone={p.health === "on-track" ? "green" : p.health === "at-risk" ? "amber" : "red"}>
                   {p.status}
@@ -172,7 +172,7 @@ export default function Dashboard() {
                     </div>
                   </div>
                   {c.unread > 0 && (
-                    <span className="text-[10px] bg-accent-blue text-white rounded-full w-4 h-4 flex items-center justify-center shrink-0">
+                    <span className="text-[10px] bg-accent-pink text-white rounded-full w-4 h-4 flex items-center justify-center shrink-0">
                       {c.unread}
                     </span>
                   )}

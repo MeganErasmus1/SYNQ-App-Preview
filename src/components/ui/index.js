@@ -162,6 +162,7 @@ export function ProgressBar({ value, tone = "blue", className, height = "h-1.5" 
   const tones = {
     blue: "bg-gradient-to-r from-accent-cyan to-accent-blue",
     purple: "bg-gradient-to-r from-accent-blue to-accent-purple",
+    pink: "bg-gradient-to-r from-accent-purple to-accent-pink",
     green: "bg-emerald-400",
     amber: "bg-amber-400",
   };

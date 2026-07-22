@@ -100,8 +100,8 @@ export default function Network() {
         <GlassCard className="p-5">
           <h3 className="text-sm font-semibold text-ink mb-3">Trending Tags</h3>
           <div className="flex flex-wrap gap-2">
-            {["#CorporateEvents", "#WeddingSeason", "#LiveEvents", "#EventTech", "#SustainableEvents"].map((t) => (
-              <Badge key={t} tone="purple">{t}</Badge>
+            {["#CorporateEvents", "#WeddingSeason", "#LiveEvents", "#EventTech", "#SustainableEvents"].map((t, i) => (
+              <Badge key={t} tone={["purple", "pink", "blue", "cyan", "purple"][i]}>{t}</Badge>
             ))}
           </div>
         </GlassCard>

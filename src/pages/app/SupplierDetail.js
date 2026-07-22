@@ -43,7 +43,7 @@ export default function SupplierDetail() {
               </div>
             </div>
             <div className="flex flex-wrap gap-2 mt-5">
-              {supplier.tags.map((t) => <Badge key={t} tone="blue">{t}</Badge>)}
+              {supplier.tags.map((t, i) => <Badge key={t} tone={["blue", "cyan", "pink"][i % 3]}>{t}</Badge>)}
             </div>
           </GlassCard>
 
