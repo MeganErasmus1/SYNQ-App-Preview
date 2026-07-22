@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Mail, Lock, ArrowRight } from "lucide-react";
 import { AuthLayout } from "./AuthLayout";
 import { Input, Button } from "../../components/ui";
+import { Highlight } from "../../components/brand/Slogan";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ export default function Login() {
         </Button>
       </form>
       <p className="text-sm text-ink-muted text-center mt-8">
-        New to SYNQ?{" "}
+        <Highlight text="New to SYNQ?" />{" "}
         <Link to="/onboarding" className="text-accent-blue hover:text-accent-cyan transition-colors font-medium">
           Create an account
         </Link>

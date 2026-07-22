@@ -1,15 +1,64 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef, useEffect, useState } from "react";
+import { motion, animate } from "framer-motion";
 import { cn } from "../../lib/utils";
 
-export function GlassCard({ className, children, hover = true, as: Tag = "div", ...props }) {
+// Animates the numeric portion of a value like "R 842K", "76%", "1.4h" or "4"
+// from 0 up to its target on mount, preserving any prefix/suffix text.
+export function AnimatedValue({ value, duration = 1.1 }) {
+  const match = String(value).match(/^([^\d-]*)(-?\d+(?:\.\d+)?)(.*)$/);
+  const [display, setDisplay] = useState(match ? `${match[1]}0${match[3]}` : value);
+
+  useEffect(() => {
+    if (!match) {
+      setDisplay(value);
+      return;
+    }
+    const [, prefix, numStr, suffix] = match;
+    const target = parseFloat(numStr);
+    const decimals = numStr.includes(".") ? numStr.split(".")[1].length : 0;
+    const controls = animate(0, target, {
+      duration,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate: (v) => setDisplay(`${prefix}${v.toFixed(decimals)}${suffix}`),
+    });
+    return () => controls.stop();
+  }, [value, duration]);
+
+  return <>{display}</>;
+}
+
+export function GlassCard({ className, children, hover = true, tilt = true, as: Tag = "div", style, ...props }) {
+  const ref = useRef(null);
+
+  const handleMouseMove = (e) => {
+    if (!tilt || !hover || !ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width;
+    const py = (e.clientY - rect.top) / rect.height;
+    const rotateY = (px - 0.5) * 8;
+    const rotateX = (0.5 - py) * 8;
+    ref.current.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  };
+
+  const handleMouseLeave = () => {
+    if (ref.current) ref.current.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg)";
+  };
+
   return (
     <Tag
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       className={cn(
         "glass rounded-xl2 shadow-glass",
-        hover && "transition-all duration-300 hover:border-accent-blue/30 hover:shadow-glow",
+        hover && "transition-shadow duration-300 hover:border-accent-blue/30 hover:shadow-glow",
         className
       )}
+      style={{
+        transition: "transform 0.2s cubic-bezier(0.22,1,0.36,1)",
+        ...(tilt && hover ? { willChange: "transform" } : null),
+        ...style,
+      }}
       {...props}
     >
       {children}

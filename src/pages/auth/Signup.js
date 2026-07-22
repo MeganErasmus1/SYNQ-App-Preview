@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Mail, Lock, User, ArrowRight } from "lucide-react";
 import { AuthLayout } from "./AuthLayout";
 import { Input, Button } from "../../components/ui";
+import { Highlight } from "../../components/brand/Slogan";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -13,7 +14,10 @@ export default function Signup() {
   };
 
   return (
-    <AuthLayout title="Let's build something impressive." subtitle="Create your SYNQ account in under a minute.">
+    <AuthLayout
+      title="Let's build something impressive."
+      subtitle={<Highlight text="Create your SYNQ account in under a minute." />}
+    >
       <form onSubmit={submit} className="space-y-4">
         <div>
           <label className="text-xs text-ink-muted mb-1.5 block">Full name</label>
@@ -32,7 +36,7 @@ export default function Signup() {
         </Button>
       </form>
       <p className="text-sm text-ink-muted text-center mt-8">
-        Already on SYNQ?{" "}
+        <Highlight text="Already on SYNQ?" />{" "}
         <Link to="/login" className="text-accent-blue hover:text-accent-cyan transition-colors font-medium">
           Log in
         </Link>

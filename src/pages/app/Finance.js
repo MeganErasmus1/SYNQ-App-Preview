@@ -4,6 +4,7 @@ import { GlassCard, SectionHeader, Badge, Button } from "../../components/ui";
 import { integrations, projects } from "../../data/mockData";
 import { formatCurrency } from "../../lib/utils";
 import { useApp } from "../../context/AppContext";
+import { Highlight } from "../../components/brand/Slogan";
 
 const grouped = integrations.reduce((acc, i) => {
   acc[i.category] = acc[i.category] || [];
@@ -18,7 +19,11 @@ export default function Finance() {
 
   return (
     <div className="max-w-[1400px] mx-auto space-y-6">
-      <SectionHeader eyebrow="Money, handled" title="Finance" subtitle="Connect your accounting stack — SYNQ keeps every quote and invoice in sync" />
+      <SectionHeader
+        eyebrow="Money, handled"
+        title="Finance"
+        subtitle={<Highlight text="Connect your accounting stack — SYNQ keeps every quote and invoice in sync" />}
+      />
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <GlassCard className="p-5 flex items-center gap-4">
@@ -48,8 +53,12 @@ export default function Finance() {
         <div className="flex items-start gap-3 mb-6">
           <Badge tone="purple" dot>Coming Soon</Badge>
         </div>
-        <h3 className="text-sm font-semibold text-ink mb-1">SYNQ doesn't replace your accounting software — it connects to it.</h3>
-        <p className="text-xs text-ink-muted mb-6">These integrations are part of our roadmap. Connect your existing tools and SYNQ keeps everything in sync automatically.</p>
+        <h3 className="text-sm font-semibold text-ink mb-1">
+          <Highlight text="SYNQ doesn't replace your accounting software — it connects to it." />
+        </h3>
+        <p className="text-xs text-ink-muted mb-6">
+          <Highlight text="These integrations are part of our roadmap. Connect your existing tools and SYNQ keeps everything in sync automatically." />
+        </p>
 
         {Object.entries(grouped).map(([category, items]) => (
           <div key={category} className="mb-6 last:mb-0">

@@ -4,6 +4,7 @@ import {
   ArrowLeft, MapPin, Star, Users, Zap, Wifi, ParkingCircle, Truck, Heart, Sparkles, Plane, Building,
 } from "lucide-react";
 import { GlassCard, Badge, Button, Avatar, SectionHeader } from "../../components/ui";
+import { Celebration } from "../../components/ui/Celebration";
 import { CoverArt } from "../../components/ui/CoverArt";
 import { venues } from "../../data/mockData";
 import { formatCurrency } from "../../lib/utils";
@@ -34,6 +35,7 @@ export default function VenueDetail() {
   const { id } = useParams();
   const venue = venues.find((v) => v.id === id) || venues[0];
   const [saved, setSaved] = useState(false);
+  const [burst, setBurst] = useState(0);
   const { setNovaOpen, pushToast } = useApp();
 
   return (
@@ -149,9 +151,19 @@ export default function VenueDetail() {
           <GlassCard className="p-6 sticky top-20">
             <div className="text-xs text-ink-faint mb-1">Starting from</div>
             <div className="text-2xl font-semibold text-ink mb-4">{formatCurrency(venue.priceFrom)}</div>
-            <Button className="w-full mb-2" size="lg" onClick={() => pushToast({ title: "Booking request sent", desc: `${venue.name} will confirm shortly.` })}>
-              Book Now
-            </Button>
+            <div className="relative">
+              <Button
+                className="w-full mb-2"
+                size="lg"
+                onClick={() => {
+                  setBurst((b) => b + 1);
+                  pushToast({ title: "Booking request sent", desc: `${venue.name} will confirm shortly.` });
+                }}
+              >
+                Book Now
+              </Button>
+              <Celebration burstKey={burst} />
+            </div>
             <Button
               className="w-full mb-2"
               size="lg"

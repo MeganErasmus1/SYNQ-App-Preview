@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Building2, Store, Users2, Camera, ShieldCheck, Truck, Briefcase, Sparkles, ArrowRight, ArrowLeft,
 } from "lucide-react";
-import { QMark } from "../../components/brand/QMark";
 import { Logo } from "../../components/brand/Logo";
+import { LogoIntro } from "../../components/brand/LogoIntro";
+import { Highlight } from "../../components/brand/Slogan";
 import { Button, Input, GlassCard } from "../../components/ui";
 import { cn } from "../../lib/utils";
 
@@ -20,49 +21,6 @@ const roleOptions = [
   { id: "freelancer", label: "Freelancer", icon: Sparkles },
 ];
 
-function SplashScreen({ onDone }) {
-  useEffect(() => {
-    const t = setTimeout(onDone, 3200);
-    return () => clearTimeout(t);
-  }, [onDone]);
-
-  return (
-    <div className="fixed inset-0 bg-bg flex flex-col items-center justify-center z-50">
-      <motion.div
-        initial={{ scale: 0.6, opacity: 0, rotate: -20 }}
-        animate={{ scale: 1, opacity: 1, rotate: 0 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-      >
-        <QMark size={96} spinning />
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 0.6 }}
-        className="mt-8"
-      >
-        <Logo size="lg" />
-      </motion.div>
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.8, duration: 0.6 }}
-        className="mt-3 text-ink-muted text-sm"
-      >
-        Nova is getting everything ready for you...
-      </motion.p>
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2.5, duration: 0.5 }}
-        className="mt-1 text-ink font-medium"
-      >
-        Welcome to SYNQ. 👋
-      </motion.p>
-    </div>
-  );
-}
-
 export default function Onboarding() {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
@@ -76,7 +34,7 @@ export default function Onboarding() {
   };
 
   if (showSplash) {
-    return <SplashScreen onDone={() => navigate("/app")} />;
+    return <LogoIntro onDone={() => navigate("/app")} />;
   }
 
   return (
@@ -98,7 +56,9 @@ export default function Onboarding() {
         <AnimatePresence mode="wait">
           {step === 1 && (
             <motion.div key="s1" initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -24 }}>
-              <h1 className="text-2xl font-semibold text-center mb-2">Who's joining SYNQ?</h1>
+              <h1 className="text-2xl font-semibold text-center mb-2">
+                <Highlight text="Who's joining SYNQ?" />
+              </h1>
               <p className="text-sm text-ink-muted text-center mb-8">
                 We'll tailor your dashboard, workflows and Nova's suggestions to match.
               </p>

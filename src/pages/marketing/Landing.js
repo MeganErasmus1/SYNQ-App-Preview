@@ -17,6 +17,7 @@ import { Button, GlassCard, Badge } from "../../components/ui";
 import { QMark } from "../../components/nova/NovaWidget";
 import { Logo } from "../../components/brand/Logo";
 import { LogoIntro } from "../../components/brand/LogoIntro";
+import { Slogan, Highlight } from "../../components/brand/Slogan";
 import { roadmap } from "../../data/mockData";
 
 const INTRO_KEY = "synq_intro_seen";
@@ -122,14 +123,11 @@ export default function Landing() {
           <Badge tone="purple" className="mx-auto mb-8" dot>
             Introducing Nova — your AI teammate
           </Badge>
-          <h1 className="text-5xl sm:text-7xl font-semibold tracking-tight leading-[1.05] mb-6">
-            Every venue. Every supplier.
-            <br />
-            <span className="text-gradient">Every event. In SYNQ.</span>
+          <h1 className="font-semibold tracking-tight mb-6">
+            <Slogan size="hero" />
           </h1>
           <p className="text-lg text-ink-muted max-w-2xl mx-auto mb-10">
-            SYNQ is the operating system for the events industry — connecting organisers, venues, suppliers
-            and clients on one intelligent platform. From first enquiry to final applause.
+            <Highlight text="SYNQ is the operating system for the events industry — connecting organisers, venues, suppliers and clients on one intelligent platform. From first enquiry to final applause." />
           </p>
           <div className="flex items-center justify-center gap-4 flex-wrap">
             <Link to="/onboarding">
@@ -266,7 +264,7 @@ export default function Landing() {
                   className="glass rounded-2xl px-5 py-3.5 text-sm text-ink flex items-center gap-3"
                 >
                   <QMark size={18} />
-                  {line}
+                  <Highlight text={line} />
                 </motion.div>
               ))}
             </div>
@@ -278,7 +276,7 @@ export default function Landing() {
         <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((t) => (
             <GlassCard key={t.name} className="p-7">
-              <p className="text-sm text-ink leading-relaxed mb-5">"{t.quote}"</p>
+              <p className="text-sm text-ink leading-relaxed mb-5">"<Highlight text={t.quote} />"</p>
               <div className="text-sm font-medium text-ink">{t.name}</div>
               <div className="text-xs text-ink-muted">{t.role}</div>
             </GlassCard>
@@ -311,7 +309,7 @@ export default function Landing() {
           How has this <span className="text-gradient">not existed</span> before?
         </h2>
         <p className="text-ink-muted mb-10 max-w-xl mx-auto">
-          Join the organisers, venues and suppliers already bringing their entire events business into SYNQ.
+          <Highlight text="Join the organisers, venues and suppliers already bringing their entire events business into SYNQ." />
         </p>
         <Link to="/onboarding">
           <Button size="lg" icon={Sparkles}>
@@ -323,7 +321,9 @@ export default function Landing() {
       <footer className="border-t border-line px-6 py-10">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <Logo size="sm" />
-          <p className="text-xs text-ink-faint">© 2026 SYNQ. Every venue. Every supplier. Every event.</p>
+          <p className="text-xs text-ink-faint">
+            <Highlight text="© 2026 SYNQ. Every venue. Every supplier. Every event." />
+          </p>
         </div>
       </footer>
     </div>

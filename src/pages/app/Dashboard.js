@@ -6,7 +6,7 @@ import {
 import {
   Sparkles, Cloud, Truck, MessageSquare, Plus, FileText, Users, CalendarPlus, ArrowUpRight, Clock, FolderKanban,
 } from "lucide-react";
-import { GlassCard, Badge, Avatar, ProgressBar, Button, SectionHeader } from "../../components/ui";
+import { GlassCard, Badge, Avatar, ProgressBar, Button, SectionHeader, AnimatedValue } from "../../components/ui";
 import { CoverArt } from "../../components/ui/CoverArt";
 import { QMark } from "../../components/nova/NovaWidget";
 import { useApp } from "../../context/AppContext";
@@ -251,7 +251,9 @@ function StatMini({ label, value, delta, trend }) {
   return (
     <GlassCard className="p-4 sm:p-5">
       <div className="text-xs text-ink-muted mb-2">{label}</div>
-      <div className="text-xl sm:text-2xl font-semibold text-ink">{value}</div>
+      <div className="text-xl sm:text-2xl font-semibold text-ink">
+        <AnimatedValue value={value} />
+      </div>
       <div className={`text-xs mt-1 font-medium ${trend === "up" ? "text-accent-cyan" : "text-ink-faint"}`}>{delta}</div>
     </GlassCard>
   );

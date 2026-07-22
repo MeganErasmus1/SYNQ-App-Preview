@@ -4,6 +4,7 @@ import { GlassCard, Badge, Button, Avatar, SectionHeader, Textarea } from "../..
 import { CoverArt } from "../../components/ui/CoverArt";
 import { networkFeed, suppliers } from "../../data/mockData";
 import { cn } from "../../lib/utils";
+import { Highlight } from "../../components/brand/Slogan";
 
 export default function Network() {
   const [liked, setLiked] = useState(new Set());
@@ -36,11 +37,15 @@ export default function Network() {
             <div className="flex items-center gap-3 mb-3">
               <Avatar name={post.company} size="md" />
               <div>
-                <div className="text-sm font-medium text-ink">{post.company}</div>
+                <div className="text-sm font-medium text-ink">
+                  <Highlight text={post.company} />
+                </div>
                 <div className="text-xs text-ink-faint">{post.time}</div>
               </div>
             </div>
-            <p className="text-sm text-ink leading-relaxed mb-3">{post.content}</p>
+            <p className="text-sm text-ink leading-relaxed mb-3">
+              <Highlight text={post.content} />
+            </p>
             {post.image && (
               <CoverArt seed={`post-${post.id}`} icon={ImageIcon} className="rounded-xl w-full h-56 mb-3" />
             )}
@@ -88,7 +93,7 @@ export default function Network() {
           <h3 className="text-sm font-semibold text-ink mb-3">Industry News</h3>
           <div className="space-y-3 text-xs text-ink-muted leading-relaxed">
             <p>SA events industry grew 18% YoY in 2025, led by corporate and hybrid formats.</p>
-            <p>Hybrid conferences now make up 34% of all corporate bookings on SYNQ.</p>
+            <p><Highlight text="Hybrid conferences now make up 34% of all corporate bookings on SYNQ." /></p>
           </div>
         </GlassCard>
 

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { QMark } from "../../components/brand/QMark";
 import { Logo } from "../../components/brand/Logo";
+import { Slogan, Highlight } from "../../components/brand/Slogan";
 import { GlassCard } from "../../components/ui";
 
 const sideQuotes = [
@@ -33,14 +34,14 @@ export function AuthLayout({ children, title, subtitle }) {
             >
               <GlassCard className="p-4 flex items-center gap-3" hover={false}>
                 <QMark size={20} />
-                <span className="text-sm text-ink">{q.text}</span>
+                <span className="text-sm text-ink">
+                  <Highlight text={q.text} />
+                </span>
               </GlassCard>
             </motion.div>
           ))}
         </div>
-        <p className="relative text-xs text-ink-faint max-w-sm">
-          Every venue. Every supplier. Every event. In SYNQ.
-        </p>
+        <Slogan size="sm" align="left" weight="font-normal" className="relative" />
       </div>
 
       <div className="flex-1 flex items-center justify-center p-6 sm:p-12">

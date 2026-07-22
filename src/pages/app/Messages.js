@@ -4,6 +4,7 @@ import { GlassCard, Avatar, Input, Badge } from "../../components/ui";
 import { messagesChannels } from "../../data/mockData";
 import { QMark } from "../../components/nova/NovaWidget";
 import { cn } from "../../lib/utils";
+import { Highlight } from "../../components/brand/Slogan";
 
 export default function Messages() {
   const [activeId, setActiveId] = useState(messagesChannels[0].id);
@@ -86,7 +87,7 @@ export default function Messages() {
                       m.mine ? "bg-synq-gradient text-white" : m.nova ? "glass border-accent-purple/30" : "glass"
                     )}
                   >
-                    {m.text}
+                    {m.mine ? m.text : <Highlight text={m.text} />}
                   </div>
                 </div>
               </div>

@@ -24,12 +24,19 @@ module.exports = {
       },
       fontFamily: {
         sans: [
+          "Satoshi",
           "-apple-system",
           "BlinkMacSystemFont",
           "Segoe UI",
-          "Inter",
           "Helvetica Neue",
           "Arial",
+          "sans-serif",
+        ],
+        display: [
+          "Satoshi",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
           "sans-serif",
         ],
       },

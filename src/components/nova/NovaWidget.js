@@ -6,6 +6,7 @@ import { novaLoadingPhrases, getNovaReply } from "../../data/nova";
 import { Avatar } from "../ui";
 import { cn } from "../../lib/utils";
 import { QMark } from "../brand/QMark";
+import { Highlight } from "../brand/Slogan";
 
 const initialMessages = [
   {
@@ -125,7 +126,7 @@ export function NovaWidget() {
                     m.from === "nova" ? "glass text-ink" : "bg-synq-gradient text-white"
                   )}
                 >
-                  {m.text}
+                  {m.from === "nova" ? <Highlight text={m.text} /> : m.text}
                   {m.action && (
                     <button className="block mt-2 text-xs font-semibold text-accent-cyan hover:text-accent-blue transition-colors">
                       {m.action} →

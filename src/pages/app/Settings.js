@@ -3,6 +3,7 @@ import { User, Building2, Bell, Shield, Link2, Palette } from "lucide-react";
 import { GlassCard, SectionHeader, Tabs, Input, Button, Avatar, Badge } from "../../components/ui";
 import { currentUser } from "../../data/mockData";
 import { cn } from "../../lib/utils";
+import { Highlight } from "../../components/brand/Slogan";
 
 const tabs = [
   { id: "profile", label: "Profile" },
@@ -136,7 +137,9 @@ export default function Settings() {
                   <span className="text-xs text-ink-muted">Light — Coming Soon</span>
                 </div>
               </div>
-              <p className="text-xs text-ink-faint">SYNQ is designed dark-mode first for a premium, focused experience.</p>
+              <p className="text-xs text-ink-faint">
+                <Highlight text="SYNQ is designed dark-mode first for a premium, focused experience." />
+              </p>
             </div>
           )}
         </div>

@@ -6,6 +6,7 @@ import { navItems } from "./nav";
 import { IconButton, Avatar } from "../ui";
 import { notifications } from "../../data/mockData";
 import { QMark } from "../nova/NovaWidget";
+import { Highlight } from "../brand/Slogan";
 
 export function Topbar() {
   const { setPaletteOpen, notifOpen, setNotifOpen, setNovaOpen } = useApp();
@@ -19,7 +20,9 @@ export function Topbar() {
         <QMark size={22} />
       </div>
       <div className="hidden lg:block">
-        <h1 className="text-sm font-semibold text-ink">{current?.label || "SYNQ"}</h1>
+        <h1 className="text-sm font-semibold text-ink">
+          {current?.label || <Highlight text="SYNQ" />}
+        </h1>
       </div>
 
       <button
@@ -27,7 +30,9 @@ export function Topbar() {
         className="flex-1 max-w-md ml-2 flex items-center gap-2.5 px-4 py-2 rounded-full glass text-ink-faint hover:border-accent-blue/30 transition-colors"
       >
         <Search className="w-4 h-4" />
-        <span className="text-sm hidden sm:inline">Search everything in SYNQ...</span>
+        <span className="text-sm hidden sm:inline">
+          Search everything in <Highlight text="SYNQ" />...
+        </span>
         <span className="text-sm sm:hidden">Search...</span>
         <kbd className="ml-auto hidden sm:inline text-[10px] border border-line rounded px-1.5 py-0.5">⌘K</kbd>
       </button>

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { GlassCard, SectionHeader, Badge } from "../../components/ui";
 import { roadmap } from "../../data/mockData";
 import { QMark } from "../../components/nova/NovaWidget";
+import { Highlight } from "../../components/brand/Slogan";
 
 const categories = ["AI", "Spatial", "Intelligence", "Experience"];
 const categoryTone = { AI: "purple", Spatial: "blue", Intelligence: "cyan", Experience: "green" };
@@ -12,7 +13,7 @@ export default function Roadmap() {
     <div className="max-w-[1400px] mx-auto space-y-10">
       <SectionHeader
         eyebrow="What's next"
-        title="The future of SYNQ"
+        title={<Highlight text="The future of SYNQ" />}
         subtitle="This is only the beginning. Here's where we're headed next."
       />
 
@@ -52,7 +53,9 @@ export default function Roadmap() {
                       <Badge className="!text-[10px]">Coming Soon</Badge>
                     </div>
                     <h4 className="text-sm font-semibold text-ink mb-1.5">{r.title}</h4>
-                    <p className="text-xs text-ink-muted leading-relaxed">{r.desc}</p>
+                    <p className="text-xs text-ink-muted leading-relaxed">
+                      <Highlight text={r.desc} />
+                    </p>
                   </GlassCard>
                 </motion.div>
               ))}
